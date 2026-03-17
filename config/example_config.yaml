@@ -1,0 +1,120 @@
+# Webull Trading Bot Configuration
+# Copy this to trading_config.yaml and customize for your strategy
+
+# Paper trading simulation settings
+paper_trading:
+  enabled: true              # Set to false for live trading
+  initial_balance: 100000    # Starting capital for simulated account
+
+# Account and portfolio settings
+account:
+  max_position_size_percent: 5   # Maximum % of portfolio per position
+  max_daily_loss_percent: 2      # Stop trading if daily loss exceeds this %
+
+# Symbols to watch and trade
+watchlist:
+  - AAPL    # Apple
+  - MSFT    # Microsoft
+  - TSLA    # Tesla
+  - SPY     # S&P 500 ETF
+  - QQQ     # Nasdaq 100 ETF
+
+# Technical indicator settings
+indicators:
+  # RSI (Relative Strength Index)
+  rsi:
+    period: 14          # RSI calculation period
+    overbought: 70      # Overbought threshold (sell signal)
+    oversold: 30        # Oversold threshold (buy signal)
+  
+  # Moving Averages (EMA)
+  moving_averages:
+    fast_period: 9      # Fast MA period (9-day EMA)
+    slow_period: 21     # Slow MA period (21-day EMA)
+  
+  # Data update interval
+  candle_interval: 5    # Minutes between price updates
+
+# Signal generation rules
+signals:
+  rsi_divergence_enabled: true              # Use RSI oversold/overbought
+  ma_crossover_enabled: true                # Use moving average crossovers
+  require_volume_confirmation: false        # Require volume confirmation for signals
+
+# Risk management settings
+risk:
+  stop_loss_percent: 2.0         # Stop loss % below entry price
+  take_profit_percent: 4.0       # Take profit % above entry price
+  trailing_stop_percent: 1.5     # Trailing stop % (locks in gains)
+  max_concurrent_positions: 3    # Maximum number of open positions
+
+# Position sizing strategy
+position_sizing:
+  method: "risk_based"           # "fixed" or "risk_based"
+  fixed_shares: 10               # For "fixed" method: number of shares per trade
+  risk_per_trade_percent: 1      # For "risk_based" method: % of account to risk per trade
+
+# Market trading hours
+market:
+  trading_hours_enabled: true    # Only trade during market hours
+  start_hour: 9                  # Market open hour (Eastern Time, 24-hour format)
+  end_hour: 16                   # Market close hour (Eastern Time, 24-hour format)
+
+# Logging configuration
+logging:
+  level: "INFO"                  # Log level: DEBUG, INFO, WARNING, ERROR
+  log_file: "logs/trading.log"   # Main log file path
+  trades_file: "logs/trades.csv" # Trade history CSV file
+
+# ============================================================================
+# STRATEGY EXPLANATION
+# ============================================================================
+# 
+# This configuration uses a momentum-based strategy:
+#
+# 1. BUY SIGNALS are generated when:
+#    - RSI drops below 30 (oversold) AND
+#    - Fast EMA crosses above slow EMA (bullish momentum)
+#
+# 2. SELL SIGNALS are generated when:
+#    - RSI rises above 70 (overbought) OR
+#    - Fast EMA crosses below slow EMA (bearish momentum)
+#
+# 3. RISK MANAGEMENT:
+#    - Position sized based on account balance and risk tolerance
+#    - Stop loss automatically set 2% below entry
+#    - Take profit automatically set 4% above entry
+#    - Max 3 concurrent positions to limit portfolio concentration
+#
+# 4. POSITION SIZING:
+#    - "risk_based": Calculates shares based on stop loss distance
+#    - Ensures max 1% of account risked per trade
+#    - Limits to max 5% of portfolio per position
+#
+# ============================================================================
+# CUSTOMIZATION TIPS
+# ============================================================================
+#
+# For MORE AGGRESSIVE trading:
+#   - Increase fast_period to 5 (faster signals)
+#   - Decrease oversold to 25 (earlier buys)
+#   - Increase take_profit_percent to 6 (higher targets)
+#   - Increase max_concurrent_positions to 5
+#
+# For LESS AGGRESSIVE trading:
+#   - Increase slow_period to 28 (slower, steadier signals)
+#   - Increase oversold to 35 (wait for stronger oversold)
+#   - Decrease take_profit_percent to 2.5 (lock in earlier)
+#   - Decrease max_concurrent_positions to 2
+#   - Increase stop_loss_percent to 3 (wider stops)
+#
+# For SWING TRADING:
+#   - Increase candle_interval to 60 (hourly candles)
+#   - Adjust moving average periods: fast=20, slow=50
+#
+# For SCALPING:
+#   - Decrease candle_interval to 1-2 (very frequent updates)
+#   - Decrease take_profit_percent to 1 (quick profits)
+#   - Increase max_concurrent_positions to 5
+#
+# ============================================================================

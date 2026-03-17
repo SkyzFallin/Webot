@@ -1,0 +1,35 @@
+# Webull Trading Bot Requirements
+
+# Core dependencies
+webull-api==1.0.0  # Webull API client (or use: pip install git+https://github.com/oldmandeveloper/webull-api.git)
+pandas==2.2.0
+numpy==1.24.3
+pyyaml==6.0
+python-dotenv==1.0.0
+
+# HTTP and networking
+requests==2.31.0
+
+# Timezone handling
+pytz==2024.1
+
+# Data analysis (for technical indicators)
+ta-lib==0.4.28  # Optional but recommended for TA-Lib indicators
+# Fallback: simple implementations included if ta-lib not available
+
+# Logging and monitoring
+python-json-logger==2.0.7
+
+# Testing
+pytest==7.4.0
+pytest-cov==4.1.0
+pytest-mock==3.11.1
+
+# Code quality
+black==23.9.1
+flake8==6.1.0
+mypy==1.5.1
+
+# Development
+ipython==8.15.0
+jupyter==1.0.0
