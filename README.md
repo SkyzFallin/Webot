@@ -151,4 +151,8 @@ Personal use only. Not for redistribution without modification.
 
 ---
 
-<p align="center"><sub>Built by <a href="https://github.com/SkyzFallin">SkyzFallin</a> // WC Security</sub></p>
+> This tool is for educational and informational purposes only — not financial advice. Past performance does not guarantee future results. Trade at your own risk.
+
+---
+
+<p align="center"><sub>Built by <a href="https://github.com/SkyzFallin">SkyzFallin</a></sub></p>
