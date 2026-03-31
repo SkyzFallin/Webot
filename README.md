@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/license-personal--use-red?style=flat-square" alt="License"/>
   <img src="https://img.shields.io/badge/trading-paper%20%7C%20live-orange?style=flat-square" alt="Trading Mode"/>
   <img src="https://img.shields.io/badge/status-active-brightgreen?style=flat-square" alt="Status"/>
+  <img src="https://img.shields.io/badge/Author-SkyzFallin-ce9178?style=flat-square&logo=github&logoColor=white" alt="Author"/>
 </p>
 
 ---
