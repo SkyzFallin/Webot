@@ -1,33 +1,175 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="180" viewBox="0 0 760 180">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0d1117"/>
-      <stop offset="100%" style="stop-color:#161b22"/>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e17;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#111827;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0e17;stop-opacity:1" />
     </linearGradient>
+    <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f0883e;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="greenGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:0.6" />
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fff7ed" />
+      <stop offset="50%" style="stop-color:#fed7aa" />
+      <stop offset="100%" style="stop-color:#fff7ed" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
   </defs>
-  <rect width="760" height="180" fill="url(#bg)"/>
+
+  <rect width="900" height="300" fill="url(#bgGrad)" rx="12" />
+
+  <!-- Subtle grid -->
+  <g opacity="0.06" stroke="#94a3b8" stroke-width="0.5">
+    <line x1="0" y1="60" x2="900" y2="60" />
+    <line x1="0" y1="120" x2="900" y2="120" />
+    <line x1="0" y1="180" x2="900" y2="180" />
+    <line x1="0" y1="240" x2="900" y2="240" />
+    <line x1="150" y1="0" x2="150" y2="300" />
+    <line x1="300" y1="0" x2="300" y2="300" />
+    <line x1="450" y1="0" x2="450" y2="300" />
+    <line x1="600" y1="0" x2="600" y2="300" />
+    <line x1="750" y1="0" x2="750" y2="300" />
+  </g>
+
+  <!-- Left side: candlestick chart -->
+  <g opacity="0.25">
+    <!-- Green candles -->
+    <line x1="80" y1="200" x2="80" y2="150" stroke="#10b981" stroke-width="1" />
+    <rect x="74" y="165" width="12" height="25" fill="#10b981" rx="1" />
+
+    <line x1="110" y1="195" x2="110" y2="135" stroke="#10b981" stroke-width="1" />
+    <rect x="104" y="145" width="12" height="35" fill="#10b981" rx="1" />
+
+    <!-- Red candle -->
+    <line x1="140" y1="185" x2="140" y2="125" stroke="#ef4444" stroke-width="1" />
+    <rect x="134" y="130" width="12" height="30" fill="#ef4444" rx="1" />
+
+    <!-- Green continuation -->
+    <line x1="170" y1="175" x2="170" y2="115" stroke="#10b981" stroke-width="1" />
+    <rect x="164" y="120" width="12" height="38" fill="#10b981" rx="1" />
+
+    <line x1="200" y1="165" x2="200" y2="100" stroke="#10b981" stroke-width="1" />
+    <rect x="194" y="105" width="12" height="42" fill="#10b981" rx="1" />
+
+    <!-- Red pullback -->
+    <line x1="230" y1="155" x2="230" y2="108" stroke="#ef4444" stroke-width="1" />
+    <rect x="224" y="112" width="12" height="24" fill="#ef4444" rx="1" />
+
+    <!-- Recovery -->
+    <line x1="260" y1="148" x2="260" y2="92" stroke="#10b981" stroke-width="1" />
+    <rect x="254" y="98" width="12" height="36" fill="#10b981" rx="1" />
+
+    <line x1="290" y1="140" x2="290" y2="82" stroke="#10b981" stroke-width="1" />
+    <rect x="284" y="86" width="12" height="40" fill="#10b981" rx="1" />
+  </g>
+
+  <!-- EMA lines behind text -->
+  <g opacity="0.15">
+    <path d="M60,180 Q120,160 170,140 Q220,118 270,130 Q310,108 350,95" fill="none" stroke="#facc15" stroke-width="1.5" />
+    <path d="M60,188 Q120,172 170,158 Q220,142 270,146 Q310,132 350,120" fill="none" stroke="#f0883e" stroke-width="1.5" />
+  </g>
+
+  <!-- Signal dot -->
+  <circle cx="290" cy="130" r="5" fill="#10b981" filter="url(#softGlow)" opacity="0.5" />
+
+  <!-- Right side: faded bot status readout -->
+  <g font-family="'Courier New', Courier, monospace" font-size="9.5" fill="#f0883e" opacity="0.12">
+    <text x="680" y="50">STATUS: RUNNING</text>
+    <text x="680" y="68">MODE: PAPER</text>
+    <text x="680" y="86">SIGNAL: LONG</text>
+    <text x="680" y="104">RSI(14): 58.2</text>
+    <text x="680" y="122">MACD: CROSS UP</text>
+    <text x="680" y="140">P/L: +$142.30</text>
+    <text x="680" y="158">RISK: 1.5%</text>
+    <text x="680" y="176">TRADES: 12/15 W</text>
+  </g>
+
+  <!-- Right side candles fading -->
+  <g opacity="0.1">
+    <line x1="720" y1="210" x2="720" y2="165" stroke="#10b981" stroke-width="1" />
+    <rect x="714" y="172" width="12" height="28" fill="#10b981" rx="1" />
+    <line x1="750" y1="200" x2="750" y2="155" stroke="#ef4444" stroke-width="1" />
+    <rect x="744" y="160" width="12" height="22" fill="#ef4444" rx="1" />
+    <line x1="780" y1="195" x2="780" y2="148" stroke="#10b981" stroke-width="1" />
+    <rect x="774" y="152" width="12" height="30" fill="#10b981" rx="1" />
+    <line x1="810" y1="188" x2="810" y2="140" stroke="#10b981" stroke-width="1" />
+    <rect x="804" y="144" width="12" height="32" fill="#10b981" rx="1" />
+    <line x1="840" y1="182" x2="840" y2="135" stroke="#ef4444" stroke-width="1" />
+    <rect x="834" y="140" width="12" height="25" fill="#ef4444" rx="1" />
+  </g>
+
   <!-- Top accent line -->
-  <rect x="0" y="0" width="760" height="2" fill="#f0883e"/>
-  <!-- Bottom accent line -->
-  <rect x="0" y="178" width="760" height="2" fill="#f0883e"/>
-  <!-- Left accent bar -->
-  <rect x="0" y="0" width="3" height="180" fill="#f0883e" opacity="0.6"/>
-  <!-- Decorative grid dots -->
-  <circle cx="700" cy="30" r="1.5" fill="#f0883e" opacity="0.3"/>
-  <circle cx="720" cy="30" r="1.5" fill="#f0883e" opacity="0.2"/>
-  <circle cx="740" cy="30" r="1.5" fill="#f0883e" opacity="0.3"/>
-  <circle cx="700" cy="50" r="1.5" fill="#f0883e" opacity="0.2"/>
-  <circle cx="720" cy="50" r="1.5" fill="#f0883e" opacity="0.3"/>
-  <circle cx="740" cy="50" r="1.5" fill="#f0883e" opacity="0.2"/>
-  <circle cx="700" cy="70" r="1.5" fill="#f0883e" opacity="0.3"/>
-  <circle cx="720" cy="70" r="1.5" fill="#f0883e" opacity="0.2"/>
-  <circle cx="740" cy="70" r="1.5" fill="#f0883e" opacity="0.3"/>
-  <!-- Project title -->
-  <text x="40" y="72" font-family="'Courier New', Courier, monospace" font-size="38" font-weight="bold" fill="#e6edf3">Webot</text>
+  <rect x="0" y="0" width="900" height="3" fill="url(#orangeGlow)" rx="0" opacity="0.8" />
+
+  <!-- Robot / bot icon (center-left area) -->
+  <g transform="translate(420, 52)" opacity="0.3" filter="url(#glow)">
+    <!-- Bot head -->
+    <rect x="-14" y="-8" width="28" height="20" rx="4" fill="none" stroke="#f0883e" stroke-width="1.5"/>
+    <!-- Eyes -->
+    <circle cx="-5" cy="2" r="3" fill="#f0883e" opacity="0.8"/>
+    <circle cx="5" cy="2" r="3" fill="#f0883e" opacity="0.8"/>
+    <!-- Antenna -->
+    <line x1="0" y1="-8" x2="0" y2="-16" stroke="#f0883e" stroke-width="1.5"/>
+    <circle cx="0" cy="-18" r="2.5" fill="#f0883e" opacity="0.6"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="450" y="120" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-size="56" font-weight="700" fill="url(#titleGrad)" text-anchor="middle"
+        letter-spacing="4" filter="url(#glow)">Webot</text>
+
   <!-- Subtitle -->
-  <text x="40" y="105" font-family="'Courier New', Courier, monospace" font-size="16" fill="#f0883e">Autonomous Webull Trading Bot</text>
-  <!-- Description line -->
-  <text x="40" y="135" font-family="'Courier New', Courier, monospace" font-size="12" fill="#8b949e">Momentum-based signals · Risk management · Paper &amp; live trading</text>
-  <!-- Author tag -->
-  <text x="40" y="160" font-family="'Courier New', Courier, monospace" font-size="11" fill="#484f58">SkyzFallin</text>
+  <text x="450" y="158" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-size="16" fill="#94a3b8" text-anchor="middle" letter-spacing="4" font-weight="300">
+    AUTONOMOUS WEBULL TRADING BOT</text>
+
+  <!-- Divider -->
+  <line x1="330" y1="175" x2="570" y2="175" stroke="#f0883e" stroke-width="1" opacity="0.3" />
+
+  <!-- Tag pills -->
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500">
+    <rect x="230" y="190" width="82" height="24" rx="12" fill="#f0883e" opacity="0.15" />
+    <rect x="230" y="190" width="82" height="24" rx="12" fill="none" stroke="#f0883e" stroke-width="0.5" opacity="0.4" />
+    <text x="271" y="206" fill="#fdba74" text-anchor="middle">MOMENTUM</text>
+
+    <rect x="322" y="190" width="55" height="24" rx="12" fill="#10b981" opacity="0.15" />
+    <rect x="322" y="190" width="55" height="24" rx="12" fill="none" stroke="#10b981" stroke-width="0.5" opacity="0.4" />
+    <text x="349" y="206" fill="#6ee7b7" text-anchor="middle">RSI</text>
+
+    <rect x="387" y="190" width="58" height="24" rx="12" fill="#22d3ee" opacity="0.15" />
+    <rect x="387" y="190" width="58" height="24" rx="12" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4" />
+    <text x="416" y="206" fill="#67e8f9" text-anchor="middle">MACD</text>
+
+    <rect x="455" y="190" width="52" height="24" rx="12" fill="#facc15" opacity="0.15" />
+    <rect x="455" y="190" width="52" height="24" rx="12" fill="none" stroke="#facc15" stroke-width="0.5" opacity="0.4" />
+    <text x="481" y="206" fill="#fde68a" text-anchor="middle">EMA</text>
+
+    <rect x="517" y="190" width="50" height="24" rx="12" fill="#a78bfa" opacity="0.15" />
+    <rect x="517" y="190" width="50" height="24" rx="12" fill="none" stroke="#a78bfa" stroke-width="0.5" opacity="0.4" />
+    <text x="542" y="206" fill="#c4b5fd" text-anchor="middle">RISK</text>
+
+    <rect x="577" y="190" width="85" height="24" rx="12" fill="#ef4444" opacity="0.15" />
+    <rect x="577" y="190" width="85" height="24" rx="12" fill="none" stroke="#ef4444" stroke-width="0.5" opacity="0.4" />
+    <text x="619" y="206" fill="#fca5a5" text-anchor="middle">PAPER/LIVE</text>
+  </g>
+
+  <!-- Bottom tagline -->
+  <text x="450" y="255" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+        font-size="12" fill="#4b5563" text-anchor="middle" letter-spacing="2" font-weight="400">
+    MOMENTUM SIGNALS / RISK MANAGEMENT / AUTOMATED EXECUTION</text>
+
+  <!-- Bottom accent -->
+  <rect x="0" y="297" width="900" height="3" fill="url(#greenGlow)" rx="0" opacity="0.4" />
 </svg>
