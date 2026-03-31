@@ -14,7 +14,7 @@ If you discover a security issue in this project, please report it responsibly.
 
 Instead, contact the maintainer directly:
 
-- **Email**: security@wescastle.com
+- **Email**: skyzfallin@users.noreply.github.com
 - **GitHub**: [@SkyzFallin](https://github.com/SkyzFallin)
 
 Please include:
